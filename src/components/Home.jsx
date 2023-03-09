@@ -1,6 +1,6 @@
 import '../App.css';
 import ReactFullpage from '@fullpage/react-fullpage';
-import HomeSection from './sections/homeSection';
+import HomeSection from '../sections/HeroSection';
 import styled from '@emotion/styled'
 
 const HomeSectionContainer = styled.div`

@@ -1,13 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hamad Bakeel</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hamad Bakeel</title>
+  <!-- fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=La+Belle+Aurore&family=Rampart+One&family=Shantell+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+    rel="stylesheet">
+</head>
+
+<body style="position: relative">
+  <div id="root"></div>
+
+  <script type="module" src="/src/main.jsx"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.14.2/TweenMax.min.js"></script>
+  <script>
+    var canvas = document.querySelector('#c'),
+      ctx = canvas.getContext('2d'),
+      points = [],
+      m = { x: null, y: null },
+      r = 0;
+
+    var a = 20; // how many dots to have
+    var b = 5; // how fast to spin
+    var c = 0.1; // how much to fade. 1 all, 0.5 half, 0 none
+    var d = 100; // distance from the mouse
+
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    m.x = canvas.width / 2;
+    m.y = canvas.height / 2;
+
+    window.addEventListener('mousemove', function (e) {
+      TweenMax.to(m, 0.3, { x: e.clientX, y: e.clientY, ease: 'linear' })
+    })
+
+    for (var i = 0; i < a; i++) {
+      points.push({
+        r: 360 / a * i,
+        p: { x: null, y: null },
+        w: Math.random() * 5,
+        c: '#fff',
+        d: Math.random() * (d + 5) - 5,
+        s: Math.random() * (b + 5) - 5
+      })
+    }
+
+    function render() {
+      if (m.x == null || m.y == null) return;
+
+      ctx.fillStyle = 'rgba(0,0,0,' + c + ')';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.lineCap = 'round';
+
+      for (var i = 0; i < points.length; i++) {
+        var p = points[i];
+
+        p.r += p.s;
+        if (p.r >= 360) p.r = p.r - 360;
+
+        var vel = {
+          x: p.d * Math.cos(p.r * Math.PI / 180),
+          y: p.d * Math.sin(p.r * Math.PI / 180)
+        };
+
+        if (p.p.x != null && p.p.y != null) {
+          ctx.strokeStyle = p.c;
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(p.p.x, p.p.y);
+          ctx.lineTo(m.x + vel.x, m.y + vel.y)
+          ctx.stroke();
+          ctx.closePath();
+        }
+
+        p.p.x = m.x + vel.x;
+        p.p.y = m.y + vel.y;
+      }
+    }
+
+
+    window.requestAnimFrame = (function () {
+      return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        function (callback) {
+          window.setTimeout(callback, 1000 / 60);
+        };
+    })();
+
+    (function animloop() {
+      requestAnimFrame(animloop);
+      render();
+    })();
+  </script>
+</body>
+
 </html>

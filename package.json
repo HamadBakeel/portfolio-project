@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "start": "npm run dev",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -12,6 +13,8 @@
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@fullpage/react-fullpage": "^0.1.34",
+    "framer-motion": "^10.2.3",
+    "gsap": "^3.11.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
