@@ -2,6 +2,7 @@ import '../App.css';
 import ReactFullpage from '@fullpage/react-fullpage';
 import HomeSection from '../sections/HeroSection';
 import styled from '@emotion/styled'
+import AboutMeSection from '../sections/AboutMeSection';
 
 const HomeSectionContainer = styled.div`
   width: 100%;
@@ -41,7 +42,7 @@ function Home({currentSection, setCurrentSection}) {
               <HomeSection/>
             </div>
             <div className="section">
-              <p>Section 2</p>
+              <AboutMeSection/>
             </div>
             <div className="section">
               <p>Section 3</p>
