@@ -4,6 +4,7 @@ import HomeSection from '../sections/HeroSection';
 import styled from '@emotion/styled'
 import AboutMeSection from '../sections/AboutMeSection';
 import MyWorksSection from '../sections/MyWorksSection';
+import ContactMeSection from '../sections/ContactMeSection';
 
 const HomeSectionContainer = styled.div`
   width: 100%;
@@ -49,7 +50,7 @@ function Home({currentSection, setCurrentSection}) {
               <MyWorksSection/>
             </div>
             <div className="section">
-              <p>Section 4</p>
+              <ContactMeSection/>
             </div>
           </ReactFullpage.Wrapper>
         );

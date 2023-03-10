@@ -18,6 +18,9 @@ ul{
 .text-white{
   color: white;
 }
+.section{
+  height: 100vh;
+}
 .sectionContainer {
   padding: 1rem;
   padding-inline-start: 2rem;
@@ -70,7 +73,8 @@ p.subtitle{
   font-family: 'Shantell Sans', cursive;
   font-size: 1rem;
   position: relative;
-  margin-bottom: 1.5rem;
+  margin-block: 1.8rem;
+  padding: 10px;
 }
 p.subtitle:before {
   content: '<p>';
