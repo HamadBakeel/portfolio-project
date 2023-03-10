@@ -5,21 +5,26 @@
 }
 
 .swiper_container {
-    height: 70%;
-    padding: 2rem 0;
+    height: 80vh;
+    padding-top: 1rem !important;
     position: relative;
 }
-.swiper-wrapper {
-    padding-block: 2rem;
-}
+
 .swiper-slide {
-    width: 17rem !important;
-    height: 22rem !important;
+    /* width: 25rem !important; */
+    height: 80vh !important;
     position: relative;
+    z-index: 1;
 }
-.swiper-slide-active img{
+.swiper-slide-active {
+    z-index: 3;
+}
+.swiper-slide-active .img-container{
+    transition: .7s;
+    transform: scale(1.1) translateY(10px);
+    padding-inline-end: 30px;
     box-shadow:  0 0 0 9999px rgb(29 29 29 / 50%);
-    animation: float 2s ease-in-out infinite;
+    /* animation: float 2s ease-in-out infinite; */
 }
 .img-container{
     perspective: 1000px;
@@ -27,8 +32,37 @@
     position: relative;
     transition: .3s all;
 }
+/* .swiper-slide-active .img-container {
+    border-radius: 10px;
+    overflow: hidden;
+} */
+.swiper-slide .img-container .overlay{
+    display: none;
+}
+.swiper-slide-active .img-container .overlay{
+    display: initial;
+    position: absolute;
+    z-index: 4;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    color: black;
+    backdrop-filter: blur(10px);
+    padding: 10px;
+}
+.swiper-slide-active .img-container .overlay p{
+    padding-inline-start: 10px;
+}
+.swiper-slide-active .img-container .overlay a{
+    /* @apply bg-[#1d1d1dbe] hover:bg-[#1d1d1de2] text-[#05fdd8] hover:text-[#05fdd8] font-bold py-12 px-4 rounded-full transition block mx-auto mt-5 w-fit; */
+    @apply text-[#000] hover:text-[#000] font-bold transition block m-auto w-fit;
+}
+
 .swiper-slide-active .img-container::before{
-    content:"";
+    /* content:"";
     background: linear-gradient(45deg,
     #ff0000 0%, 
     #ff9a00 10%,
@@ -41,13 +75,14 @@
     #ba0cf8 80%, 
     #fb07d9 90%, 
     #ff0000 100%  )
-    repeat 0% 0% / 300% 100%;
+    repeat 0% 0% / 500% 100%;
     position: absolute;
     inset: -3px;
     border-radius: 16px;
     filter: blur(8px);
-    transform: translateZ(-1px); /*or z-index */
-    animation: rgb 6s linear infinite;
+    transform: translateZ(-1px); /*or z-index*/
+    /* animation: rgb 6s linear infinite;   */
+    z-index: 2;
 }
 
 [data-tilt="true"] {
@@ -69,39 +104,18 @@
     50% {background-position: 100% 50%;}
     100% {background-position: 0% 50%;}
 }
-@keyframes float {
-    0% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-      /* box-shadow: 0 15px 28px 3px rgb(5 253 216 / 30%), 0 0 0 9999px rgb(29 29 29 / 50%); */
-    }
-    100% {
-      transform: translateY(0);
-    /* box-shadow: 0 0px 28px 3px rgb(5 253 216 / 30%), 0 0 0 9999px rgb(29 29 29 / 50%); */
-    }
-  }
+
 @media (max-width: 500px) {
-    .swiper_container {
-        height: 27rem;
-    }
-
     .swiper-slide {
-        width: 8rem !important;
-        height: 16rem !important;
-    }
-
-    .swiper-slide img {
-        width: 8rem !important;
-        height: 16rem !important;
+        /* width: 15rem !important; */
+        height: 50vh !important;
     }
 }
 
 .swiper-slide img {
-    width: 17rem;
-    height: 22rem;
-    border-radius: 2rem;
+    width: 100%;
+    height: 80vh;
+    /* border-radius: 1rem; */
     object-fit: cover;
 }
 
@@ -112,52 +126,20 @@
 
 .slider-controler {
     position: relative;
-    bottom: 2rem;
+    bottom: .5rem;
     display: flex;
+    gap: 20px;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
 }
 
-.slider-controler .swiper-button-next {
-    left: 58% !important;
-    transform: translateX(-58%) !important;
-}
-
-@media (max-width: 990px) {
-    .slider-controler .swiper-button-next {
-        left: 70% !important;
-        transform: translateX(-70%) !important;
-    }
-}
-
-@media (max-width: 450px) {
-    .slider-controler .swiper-button-next {
-        left: 80% !important;
-        transform: translateX(-80%) !important;
-    }
-}
-
-@media (max-width: 990px) {
-    .slider-controler .swiper-button-prev {
-        left: 30% !important;
-        transform: translateX(-30%) !important;
-    }
-}
-
-@media (max-width: 450px) {
-    .slider-controler .swiper-button-prev {
-        left: 20% !important;
-        transform: translateX(-20%) !important;
-    }
-}
 
 .slider-controler .slider-arrow {
     background: transparent;
     width: 3.5rem;
-    height: 3.5rem;
+    /* height: 3.5rem; */
     border-radius: 50%;
-    left: 42%;
-    transform: translateX(-42%);
+    position: relative;
     filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
 }
 .slider-controler .slider-arrow svg {
