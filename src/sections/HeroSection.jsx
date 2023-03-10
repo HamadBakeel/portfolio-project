@@ -6,7 +6,7 @@ import Dots from '../components/Dots';
 const HomeSectionContainer = styled.div`
   position: relative;
   padding: 7rem 5rem;
-
+  height: 100vh;
   .colored{
     color: #05fdd8;
   }
